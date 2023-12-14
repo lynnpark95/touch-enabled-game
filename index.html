@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shapes Overlapping</title>
+    <style>
+      body {
+        text-align: center;
+      }
+      .shapes {
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-around;
+        position: relative;
+      }
+      .shape {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        margin: 0 10px;
+        position: absolute;
+      }
+      #diamond {
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        background-color: Yellow;
+        top: 0;
+        left: 0;
+      }
+      #circle {
+        border-radius: 50%;
+        background-color: blue;
+        top: 0;
+        left: 120px;
+      }
+      #rectangle {
+        background-color: green;
+        left: 240px;
+        transition: all 0.5s;
+      }
+      .circleOnDia {
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shapes">
+      <div id="rectangle" class="shape" draggable="true"></div>
+      <div id="diamond" class="shape" draggable="true"></div>
+      <div id="circle" class="shape" draggable="true"></div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
