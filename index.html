@@ -3,52 +3,106 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shapes Overlapping</title>
+    <title>Touch-enabled Demo</title>
     <style>
       body {
-        text-align: center;
-      }
-      .shapes {
-        margin-top: 50px;
-        display: flex;
-        justify-content: space-around;
-        position: relative;
+        margin: 0;
+        overflow: hidden;
+        background-image: url("background.jpg");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
       }
       .shape {
+        width: 25vw;
+        height: 25vw;
         position: absolute;
-        width: 100px;
-        height: 100px;
-        margin: 0 10px;
-        position: absolute;
+        touch-action: none;
       }
       #diamond {
+        background-color: rgb(24, 4, 251);
         clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-        background-color: Yellow;
-        top: 0;
-        left: 0;
+        top: 25%;
+        left: 20%;
+        transform: translateX(-50%);
       }
       #circle {
+        background-color: rgb(255, 0, 0);
+        top: 40%;
+        left: 40%;
         border-radius: 50%;
-        background-color: blue;
-        top: 0;
-        left: 120px;
+        z-index: 2;
       }
       #rectangle {
-        background-color: green;
-        left: 240px;
-        transition: all 0.5s;
+        background-color: rgb(0, 255, 0);
+        top: 25%;
+        left: 70%;
+        border-radius: 0;
+        pointer-events: all;
+        z-index: 1;
       }
-      .circleOnDia {
-        background-color: green;
+      #plane {
+        width: 25vw;
+        height: 20vw;
+        transform: translateX(-50%);
+        color: skyblue;
+        padding: 10px;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 1;
+        position: absolute;
+      }
+      #plane.show {
+        opacity: 1;
+        top: 40%;
+        left: 25%;
+        animation: flyLeft 2s forwards;
+      }
+
+      @keyframes flyLeft {
+        0% {
+          left: 100%;
+          opacity: 0;
+        }
+        100% {
+          left: 35%;
+          opacity: 1;
+        }
+      }
+      #plane object {
+        position: relative;
+        z-index: 1;
+      }
+
+      #text {
+        position: absolute;
+        display: none;
+        position: absolute;
+        font-size: 8vw;
+        animation: flyText 2s forwards;
+        font-family: Comic Sans MS;
+      }
+      @keyframes flyText {
+        0% {
+          left: 50%;
+          opacity: 0;
+          transform: rotateZ(0deg);
+        }
+        100% {
+          left: 45%;
+          opacity: 1;
+          transform: rotateZ(360deg);
+        }
       }
     </style>
   </head>
   <body>
-    <div class="shapes">
-      <div id="rectangle" class="shape" draggable="true"></div>
-      <div id="diamond" class="shape" draggable="true"></div>
-      <div id="circle" class="shape" draggable="true"></div>
-    </div>
+    <div id="diamond" class="shape"></div>
+    <div id="circle" class="shape"></div>
+    <div id="rectangle" class="shape"></div>
+
+    <object id="plane" type="image/svg+xml" data="plane.svg"></object>
+    <span id="text">Congrats!!</span>
 
     <script src="main.js"></script>
   </body>
