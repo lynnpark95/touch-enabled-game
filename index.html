@@ -3,6 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap"
+      rel="stylesheet"
+    />
+
     <title>Touch-enabled Demo</title>
     <style>
       body {
@@ -14,36 +19,42 @@
         background-attachment: fixed;
       }
       .shape {
-        width: 25vw;
-        height: 25vw;
         position: absolute;
         touch-action: none;
       }
       #diamond {
+        width: 35vw;
+        height: 35vw;
         background-color: rgb(24, 4, 251);
+        border: 3px solid #ffffff;
         clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
         top: 25%;
         left: 20%;
         transform: translateX(-50%);
       }
       #circle {
+        width: 25vw;
+        height: 25vw;
         background-color: rgb(255, 0, 0);
-        top: 40%;
+        top: 55%;
         left: 40%;
         border-radius: 50%;
         z-index: 2;
+        border: 3px solid #ffffff;
       }
       #rectangle {
-        background-color: rgb(0, 255, 0);
-        top: 25%;
-        left: 70%;
+        width: 30vw;
+        height: 30vw;
+        background-color: rgb(0, 255, 55);
+        top: 8%;
+        left: 55%;
         border-radius: 0;
         pointer-events: all;
         z-index: 1;
       }
       #plane {
-        width: 25vw;
-        height: 20vw;
+        width: 20vw;
+        height: 15vw;
         transform: translateX(-50%);
         color: skyblue;
         padding: 10px;
@@ -78,9 +89,11 @@
         position: absolute;
         display: none;
         position: absolute;
-        font-size: 8vw;
+        color: rgb(250, 101, 255);
+        font-size: 7vw;
+        font-weight: bold;
         animation: flyText 2s forwards;
-        font-family: Comic Sans MS;
+        font-family: "Architects Daughter", cursive;
       }
       @keyframes flyText {
         0% {
@@ -94,15 +107,45 @@
           transform: rotateZ(360deg);
         }
       }
+      .confetti-container {
+        display: none;
+        position: fixed;
+        top: 30%;
+        left: 30%;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+      }
+      .confetti-container.show {
+        display: block;
+      }
+
+      .bg-confetti-animated {
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+
+      @media (prefers-reduced-motion) {
+        .bg-confetti-animated {
+          background-image: url("data:image/svg+xml, ...");
+        }
+      }
     </style>
   </head>
   <body>
     <div id="diamond" class="shape"></div>
     <div id="circle" class="shape"></div>
     <div id="rectangle" class="shape"></div>
+    <div
+      id="confetti-container"
+      class="confetti-container bg-confetti-animated"
+    >
+      <img src="confetti.svg" />
+    </div>
 
     <object id="plane" type="image/svg+xml" data="plane.svg"></object>
-    <span id="text">Congrats!!</span>
+    <span id="text">Congrats ! !</span>
 
     <script src="main.js"></script>
   </body>

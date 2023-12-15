@@ -16,7 +16,10 @@ function dragStart(e) {
   dragging = true;
   circle.style.zIndex = "3";
 }
-
+function showConfetti() {
+  const container = document.getElementById("confetti-container");
+  container.classList.add("show");
+}
 function dragEnd() {
   dragging = false;
   circle.style.zIndex = "2";
@@ -24,6 +27,7 @@ function dragEnd() {
   if (crossedDiamond && enteredRectangle) {
     circle.style.backgroundColor = "yellow";
     setTimeout(() => {
+      showConfetti();
       hideShapes();
       plane.classList.add("show");
       text.classList.add("show");
@@ -38,7 +42,7 @@ function dragEnd() {
   } else {
     if (!crossedDiamond && enteredRectangle) {
       circle.style.left = "40vw";
-      circle.style.top = "80vw";
+      circle.style.top = "55%";
     }
   }
 }
